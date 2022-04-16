@@ -16,6 +16,7 @@ dev_dependencies:
   test: ^1.19.2
   very_good_analysis: ^2.4.0
 
-flutter:
-  assets:
-    - assets/data/
+# flutter:
+#   assets:
+#     - assets/data/company_data.json
+#     - assets/data/employee_data.json

@@ -7,6 +7,9 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
+  cached_network_image: ^3.2.0
+  data:
+    path: ../data
   flutter:
     sdk: flutter
 

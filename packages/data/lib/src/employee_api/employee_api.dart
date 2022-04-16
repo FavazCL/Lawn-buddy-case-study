@@ -9,12 +9,12 @@ class EmployeeApi {
   Future<List<Employee>> getEmployees(List<Company> companies) async {
     final response =
         await rootBundle.loadString('assets/data/employee_data.json');
-    final responseParsed = jsonDecode(response) as List<Map<String, dynamic>>;
+    final responseParsed = jsonDecode(response) as List<dynamic>;
 
-    return responseParsed.map((employee) {
-      employee['company_id'] =
+    return responseParsed.map((dynamic employee) {
+      employee['company'] =
           _getCurrentCompany(employee['company_id'] as int, companies);
-      return Employee.fromJson(employee);
+      return Employee.fromJson(employee as Map<String, dynamic>);
     }).toList();
   }
 

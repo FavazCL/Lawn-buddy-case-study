@@ -8,7 +8,10 @@ class CompanyApi {
   Future<List<Company>> getCompanies() async {
     final response =
         await rootBundle.loadString('assets/data/company_data.json');
-    final responseParsed = jsonDecode(response) as List<Map<String, dynamic>>;
-    return responseParsed.map(Company.fromJson).toList();
+    final responseParsed = jsonDecode(response) as List<dynamic>;
+    return responseParsed
+        .map((dynamic company) =>
+            Company.fromJson(company as Map<String, dynamic>))
+        .toList();
   }
 }

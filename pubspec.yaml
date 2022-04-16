@@ -30,3 +30,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/data/company_data.json
+    - assets/data/employee_data.json

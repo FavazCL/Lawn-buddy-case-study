@@ -13,12 +13,12 @@ class EmployeeApi {
 
     return responseParsed.map((employee) {
       employee['company_id'] =
-          getCurrentCompany(employee['company_id'] as int, companies);
+          _getCurrentCompany(employee['company_id'] as int, companies);
       return Employee.fromJson(employee);
     }).toList();
   }
 
-  Map<String, dynamic> getCurrentCompany(
+  Map<String, dynamic> _getCurrentCompany(
       int companyId, List<Company> companies) {
     return companies.firstWhere((company) => company.id == companyId).toJson();
   }

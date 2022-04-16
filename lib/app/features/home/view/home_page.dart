@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lawn_budy_case_study/app/features/home/blocs/company/company_bloc.dart';
 import 'package:lawn_budy_case_study/app/features/home/blocs/employee/employee_bloc.dart';
+import 'package:lawn_budy_case_study/app/features/home/view/company_details_page.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,8 +36,6 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EmployeeBloc, EmployeState>(
       builder: (context, state) {
-        final size = MediaQuery.of(context).size;
-
         return Scaffold(
           appBar: AppBar(
             title: const Text('Case study'),
@@ -56,13 +55,34 @@ class HomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.employeesFiltered.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       final employee = state.employeesFiltered[index];
 
-                      return UserCard(employee: employee, onTap: () {});
+                      return UserCard(
+                        employee: employee,
+                        onTap: () {
+                          context.read<EmployeeBloc>().add(
+                                EmployeesFilteredByCompany(employee.company.id),
+                              );
+
+                          Navigator.push<CompanyDetailsPage>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider<EmployeeBloc>.value(
+                                value: BlocProvider.of<EmployeeBloc>(
+                                  context,
+                                ),
+                                child: CompanyDetailsPage(
+                                  company: employee.company,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
                 ],

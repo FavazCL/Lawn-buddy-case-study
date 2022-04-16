@@ -20,3 +20,17 @@ class EmployeesFiltered extends EmployeeEvent {
   @override
   List<Object> get props => [value];
 }
+
+
+class EmployeesFilteredByCompany extends EmployeeEvent {
+  const EmployeesFilteredByCompany(this.companyId);
+
+  final int companyId;
+
+  @override
+  List<Object> get props => [companyId];
+}
+
+class FilterCleared extends EmployeeEvent {
+  const FilterCleared();
+}

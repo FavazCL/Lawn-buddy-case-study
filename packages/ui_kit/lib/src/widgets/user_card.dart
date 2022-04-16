@@ -7,10 +7,12 @@ class UserCard extends StatelessWidget {
     Key? key,
     required this.employee,
     required this.onTap,
+    this.showCompanyName = true,
   }) : super(key: key);
 
   final Employee employee;
   final Function() onTap;
+  final bool showCompanyName;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,10 @@ class UserCard extends StatelessWidget {
                     cacheKey: employee.avatar,
                     useOldImageOnUrlChange: true,
                     imageBuilder: (context, imageProvider) => CircleAvatar(
-                      radius: 60,
+                      radius: 30,
                       backgroundColor: Theme.of(context).colorScheme.secondary,
                       child: CircleAvatar(
-                        radius: 60,
+                        radius: 30,
                         backgroundImage: imageProvider,
                       ),
                     ),
@@ -41,40 +43,43 @@ class UserCard extends StatelessWidget {
                         const Icon(Icons.error),
                   ),
                   const SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${employee.lastName}, ${employee.firstName}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${employee.lastName}, ${employee.firstName}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      Text(
-                        employee.email,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                        Text(
+                          employee.email,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   )
                 ],
               ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Text(
-                    employee.company.companyName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.blue,
+              if (showCompanyName) const SizedBox(height: 20),
+              if (showCompanyName)
+                Row(
+                  children: [
+                    Text(
+                      employee.company.companyName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.blue,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ),

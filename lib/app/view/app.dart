@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lawn_budy_case_study/app/features/home/home.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class AppView extends StatelessWidget {
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
       ],
-      home: const CounterPage(),
+      home: const HomePage(),
     );
   }
 }

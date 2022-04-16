@@ -17,28 +17,66 @@ class UserCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  child: CachedNetworkImage(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  CachedNetworkImage(
                     imageUrl: employee.avatar,
-                    height: 50,
-                    errorWidget: (BuildContext _, String __, dynamic ___) =>
+                    cacheKey: employee.avatar,
+                    useOldImageOnUrlChange: true,
+                    imageBuilder: (context, imageProvider) => CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundImage: imageProvider,
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, dynamic error) =>
                         const Icon(Icons.error),
                   ),
-                ),
-                Column(
-                  children: [
-                    Text('${employee.lastName}, ${employee.firstName}'),
-                    Text(employee.email),
-                  ],
-                )
-              ],
-            ),
-            Text(employee.company.companyName),
-          ],
+                  const SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${employee.lastName}, ${employee.firstName}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        employee.email,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Text(
+                    employee.company.companyName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

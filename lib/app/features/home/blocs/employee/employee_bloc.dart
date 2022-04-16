@@ -13,6 +13,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeState> {
   })  : _employeeRepository = employeeRepository,
         super(const EmployeState()) {
     on<EmployeeRequested>(_onEmployeeRequested);
+    on<EmployeesFiltered>(_onEmployeesFiltered);
   }
 
   final EmployeeRepository _employeeRepository;
@@ -29,10 +30,30 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeState> {
         state.copyWith(
           status: EmployeeStatus.success,
           employees: response,
+          employeesFiltered: response,
         ),
       );
     } catch (e) {
       emit(state.copyWith(status: EmployeeStatus.failure));
     }
+  }
+
+  Future<void> _onEmployeesFiltered(
+    EmployeesFiltered event,
+    Emitter<EmployeState> emit,
+  ) async {
+    if (event.value.isEmpty) {
+      emit(state.copyWith(employeesFiltered: state.employees));
+    }
+
+    final filtered = state.employees
+        .where(
+          (employe) =>
+              employe.firstName.contains(event.value) ||
+              employe.lastName.contains(event.value),
+        )
+        .toList();
+
+    emit(state.copyWith(employeesFiltered: filtered));
   }
 }

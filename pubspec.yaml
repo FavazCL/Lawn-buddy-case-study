@@ -18,6 +18,8 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  ui_kit:
+    path: packages/ui_kit
 
 
 dev_dependencies:

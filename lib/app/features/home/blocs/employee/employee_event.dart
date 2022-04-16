@@ -11,3 +11,12 @@ abstract class EmployeeEvent extends Equatable {
 class EmployeeRequested extends EmployeeEvent {
   const EmployeeRequested();
 }
+
+class EmployeesFiltered extends EmployeeEvent {
+  const EmployeesFiltered(this.value);
+
+  final String value;
+
+  @override
+  List<Object> get props => [value];
+}

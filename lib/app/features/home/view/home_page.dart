@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lawn_budy_case_study/app/features/home/blocs/company/company_bloc.dart';
 import 'package:lawn_budy_case_study/app/features/home/blocs/employee/employee_bloc.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,29 +35,40 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EmployeeBloc, EmployeState>(
       builder: (context, state) {
+        final size = MediaQuery.of(context).size;
+
         return Scaffold(
           appBar: AppBar(
             title: const Text('Case study'),
           ),
-          body: SingleChildScrollView(
-            child: Column(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
+                  const SizedBox(height: 10),
+                  CustomInputField(
+                    onChanged: (value) {
+                      context
+                          .read<EmployeeBloc>()
+                          .add(EmployeesFiltered(value));
+                    },
+                  ),
+                  const SizedBox(height: 10),
                   ListView.builder(
-                    itemCount: state.employees.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: state.employeesFiltered.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      final employee = state.employees[index];
+                      final employee = state.employeesFiltered[index];
 
-                      return Container(
-                        height: 100,
-                        color: Colors.red,
-                        child: Text(employee.firstName),
-                      );
+                      return UserCard(employee: employee, onTap: () {});
                     },
                   ),
                 ],
               ),
             ),
+          ),
         );
       },
     );

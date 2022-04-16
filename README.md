@@ -42,4 +42,18 @@ _\*Lawn Budy Case Study works on iOS, Android, Web, and Windows._
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
-# Lawn-buddy-case-study
+## Architecture 🔥
+
+![CaseStudyArch](https://user-images.githubusercontent.com/34754307/163657646-a1aa6456-6837-414a-89e4-cfaf84b7fdc4.png)
+
+
+## Results 🎬
+
+<img src="https://user-images.githubusercontent.com/34754307/163657661-80e81c15-1fbf-4dc1-83c1-fcbea169f0ac.png" width="250" height="500">
+<img src="https://user-images.githubusercontent.com/34754307/163657662-1abe315d-769c-4b70-9760-29a5d646d98e.png" width="250" height="500">
+
+
+
+https://user-images.githubusercontent.com/34754307/163657745-2462e2af-1508-408d-a8b6-b3e8ffa91341.mov
+
+

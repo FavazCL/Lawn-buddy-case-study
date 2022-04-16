@@ -8,11 +8,15 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  data:
+    path: packages/data
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  domain:
+    path: packages/domain
 
 dev_dependencies:
   bloc_test: ^9.0.3

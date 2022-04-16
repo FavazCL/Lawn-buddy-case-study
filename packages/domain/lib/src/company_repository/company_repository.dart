@@ -9,7 +9,7 @@ class CompanyRepository {
 
   final CompanyApi _companyApi;
 
-  Future<List<Company>> getEmployees() async {
+  Future<List<Company>> getCompanies() async {
     final companies = await _companyApi.getCompanies();
     return companies;
   }
